@@ -1,95 +1,127 @@
 body {
-    background-image: url('ADICIONAR FUNDO DO PRÉDIO DEIXEI AQUI');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #f0f0f0;
-  }
-  
-  .elevator-wrapper {
-    height: 420px;
-    background: #e0e0e0;
-    border-radius: 15px;
-    padding: 10px;
-    position: relative;
-    margin: auto;
-    max-width: 300px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  }
-  
-  .elevator-shaft {
-    position: relative;
-    height: 100%;
-    background: linear-gradient(#ddd, #fff);
-    border: 2px solid #aaa;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-  .elevator {
-    position: absolute;
-    width: 100%;
-    height: 90px;
-    background-color: #0d6efd;
-    color: white;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    transition: top 2s ease;
-    box-shadow: inset 0 0 5px rgba(255,255,255,0.3);
-  }
-  
-  .floor-0 { top: 330px; }
-  .floor-1 { top: 230px; }
-  .floor-2 { top: 130px; }
-  .floor-3 { top: 30px; }
-  
-  .doors {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    top: 0;
-    left: 0;
-    z-index: 1;
-  }
-  
-  .door {
-    width: 50%;
-    height: 100%;
-    background-color: #333;
-    transition: transform 1s ease;
-  }
-  
-  .door.left.open { transform: translateX(-100%); }
-  .door.right.open { transform: translateX(100%); }
-  
-  .andar-label {
-    position: relative;
-    z-index: 2;
-    font-size: 1.2rem;
-    margin-top: 10px;
-    text-align: center;
-    color: #222;
-    font-weight: bold;
-  }
-  
-  .painel-digital {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background-color: black;
-    color: lime;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1.5rem;
-    padding: 5px 10px;
-    border-radius: 5px;
-    box-shadow: inset 0 0 5px #0f0;
-    z-index: 3;
-  }
-  
+  margin: 0;
+  padding: 0;
+  background: #111;
+  color: white;
+  font-family: sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.painel-lateral {
+  position: fixed;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: #2c2c2c;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6), inset 0 0 10px rgba(255,255,255,0.05);
+  border: 2px solid #555;
+  z-index: 10;
+  width: 180px;
+}
+
+.titulo-painel {
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #fff;
+  text-align: center;
+  border-bottom: 1px solid #888;
+  padding-bottom: 5px;
+}
+
+.painel-lateral button {
+  padding: 10px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.painel-lateral button:hover {
+  background-color: #0a58ca;
+}
+
+.painel-digital {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  background-color: black;
+  color: lime;
+  font-family: monospace;
+  font-size: 2rem;
+  padding: 10px 20px;
+  border-radius: 10px;
+  z-index: 10;
+  box-shadow: 0 0 10px #0f0;
+}
+
+.elevator {
+  width: 100vw;
+  height: 100vh;
+  background-color: #222;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.doors {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 2;
+}
+
+.door {
+  width: 50%;
+  height: 100%;
+  background-color: #444;
+  transition: transform 1s ease;
+}
+
+.door.left.open {
+  transform: translateX(-100%);
+}
+
+.door.right.open {
+  transform: translateX(100%);
+}
+
+.conteudo-andar {
+  z-index: 1;
+  font-size: 2rem;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+}
+
+.spotify-container {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 999;
+  transition: opacity 0.5s ease;
+}
+
+.spotify-container.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.spotify-container iframe {
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+}
+
