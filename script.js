@@ -6,6 +6,13 @@ const label = document.getElementById('andar-label');
 const painel = document.getElementById('painel-display');
 const nomeAndar = ['Térreo', '1º Andar', '2º Andar', '3º Andar'];
 
+const buttons = {
+  0: document.getElementById('btn-0'),
+  1: document.getElementById('btn-1'),
+  2: document.getElementById('btn-2'),
+  3: document.getElementById('btn-3'),
+};
+
 const spotifyContainer = document.getElementById('spotify-container');
 const spotifyPlayer = document.getElementById('spotify-player');
 let spotifyIniciado = false;
@@ -23,6 +30,14 @@ function fecharPortas() {
 function chamarElevador(destino) {
   if (destino === currentFloor) return;
 
+  // Inicia a transição de cor dos botões
+  const currentButton = buttons[currentFloor];
+  const destinationButton = buttons[destino];
+
+  currentButton.classList.add('transitioning');
+  destinationButton.classList.add('transitioning');
+
+  // Fechar portas e iniciar transição do elevador
   fecharPortas();
 
   if (!spotifyIniciado) {
@@ -39,8 +54,27 @@ function chamarElevador(destino) {
     painel.textContent = currentFloor === 0 ? 'T' : currentFloor;
     label.textContent = nomeAndar[currentFloor];
 
+    // Atualiza os botões
+    updateButtonColors();
+
     setTimeout(() => {
       abrirPortas();
+      currentButton.classList.remove('transitioning');
+      destinationButton.classList.remove('transitioning');
+      destinationButton.classList.add('active');
     }, 1000);
   }, 1000);
+}
+
+function updateButtonColors() {
+  for (let floor in buttons) {
+    const button = buttons[floor];
+    if (parseInt(floor) === currentFloor) {
+      button.classList.add('active');
+      button.classList.remove('transitioning');
+    } else {
+      button.classList.remove('active');
+      button.classList.remove('transitioning');
+    }
+  }
 }

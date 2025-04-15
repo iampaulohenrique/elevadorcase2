@@ -20,7 +20,7 @@ body {
   background: #2c2c2c;
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.6), inset 0 0 10px rgba(255,255,255,0.05);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.05);
   border: 2px solid #555;
   z-index: 10;
   width: 180px;
@@ -49,6 +49,14 @@ body {
 
 .painel-lateral button:hover {
   background-color: #0a58ca;
+}
+
+.painel-lateral button.active {
+  background-color: #28a745;
+}
+
+.painel-lateral button.transitioning {
+  background-color: #ffc107;
 }
 
 .painel-digital {
@@ -124,4 +132,3 @@ body {
 .spotify-container iframe {
   box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
 }
-
