@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elevador - Case 2</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container py-5">
+    <div class="text-center mb-4">
+      <h1 class="fw-bold text-primary">Simulador de Elevador</h1>
+      <p class="text-muted">Clique nos botões para simular a subida e descida</p>
+    </div>
+
+    <div class="row justify-content-center">
+      
+        <!-- Painel lateral -->
+      <div class="col-md-3 mb-4">
+        <div class="card shadow-sm p-3">
+          <h5 class="text-center mb-3">Painel de Controle</h5>
+          <div class="d-grid gap-2">
+            <button class="btn btn-outline-primary" onclick="chamarElevador(3)">3º Andar</button>
+            <button class="btn btn-outline-primary" onclick="chamarElevador(2)">2º Andar</button>
+            <button class="btn btn-outline-primary" onclick="chamarElevador(1)">1º Andar</button>
+            <button class="btn btn-outline-primary" onclick="chamarElevador(0)">Térreo</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Elevador -->
+      <div class="col-md-5">
+        <div class="elevator-wrapper shadow">
+          <div class="elevator-shaft">
+            <div class="painel-digital" id="painel-display">T</div>
+            <div id="elevator" class="elevator floor-0">
+              <div class="doors">
+                <div class="door left"></div>
+                <div class="door right"></div>
+              </div>
+              <span id="andar-label" class="andar-label">Térreo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
