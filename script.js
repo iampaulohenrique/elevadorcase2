@@ -46,24 +46,34 @@ function chamarElevador(destino) {
     spotifyIniciado = true;
   }
 
-  setTimeout(() => {
-    elevator.classList.remove(`floor-${currentFloor}`);
-    elevator.classList.add(`floor-${destino}`);
-    currentFloor = destino;
+  let floorDifference = Math.abs(destino - currentFloor);
+  let step = 0;
 
+  // Transição gradual
+  const transitionInterval = setInterval(() => {
+    // Atualiza a posição do elevador
+    const newFloor = currentFloor + (destino > currentFloor ? 1 : -1);
+    elevator.classList.remove(`floor-${currentFloor}`);
+    elevator.classList.add(`floor-${newFloor}`);
+    currentFloor = newFloor;
+
+    // Atualiza painel
     painel.textContent = currentFloor === 0 ? 'T' : currentFloor;
     label.textContent = nomeAndar[currentFloor];
 
-    // Atualiza os botões
+    // Atualiza a cor do botão enquanto a transição ocorre
     updateButtonColors();
 
-    setTimeout(() => {
-      abrirPortas();
+    // Verifica se a transição foi concluída
+    step++;
+    if (step >= floorDifference) {
+      clearInterval(transitionInterval);
       currentButton.classList.remove('transitioning');
       destinationButton.classList.remove('transitioning');
       destinationButton.classList.add('active');
-    }, 1000);
-  }, 1000);
+      abrirPortas();
+    }
+  }, 1000); // A cada 1 segundo faz um passo na transição
 }
 
 function updateButtonColors() {
