@@ -17,6 +17,10 @@ const spotifyContainer = document.getElementById('spotify-container');
 const spotifyPlayer = document.getElementById('spotify-player');
 let spotifyIniciado = false;
 
+// Começa as portas abertas no térreo
+doorLeft.classList.add('open');
+doorRight.classList.add('open');
+
 function abrirPortas() {
   doorLeft.classList.add('open');
   doorRight.classList.add('open');
@@ -30,14 +34,12 @@ function fecharPortas() {
 function chamarElevador(destino) {
   if (destino === currentFloor) return;
 
-  // Inicia a transição de cor dos botões
   const currentButton = buttons[currentFloor];
   const destinationButton = buttons[destino];
 
   currentButton.classList.add('transitioning');
   destinationButton.classList.add('transitioning');
 
-  // Fechar portas e iniciar transição do elevador
   fecharPortas();
 
   if (!spotifyIniciado) {
@@ -49,22 +51,17 @@ function chamarElevador(destino) {
   let floorDifference = Math.abs(destino - currentFloor);
   let step = 0;
 
-  // Transição gradual
   const transitionInterval = setInterval(() => {
-    // Atualiza a posição do elevador
     const newFloor = currentFloor + (destino > currentFloor ? 1 : -1);
     elevator.classList.remove(`floor-${currentFloor}`);
     elevator.classList.add(`floor-${newFloor}`);
     currentFloor = newFloor;
 
-    // Atualiza painel
     painel.textContent = currentFloor === 0 ? 'T' : currentFloor;
     label.textContent = nomeAndar[currentFloor];
 
-    // Atualiza a cor do botão enquanto a transição ocorre
     updateButtonColors();
 
-    // Verifica se a transição foi concluída
     step++;
     if (step >= floorDifference) {
       clearInterval(transitionInterval);
@@ -73,7 +70,7 @@ function chamarElevador(destino) {
       destinationButton.classList.add('active');
       abrirPortas();
     }
-  }, 1000); // A cada 1 segundo faz um passo na transição
+  }, 1000);
 }
 
 function updateButtonColors() {
