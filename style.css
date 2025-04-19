@@ -17,42 +17,48 @@ body {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  background: #2c2c2c;
+  background: #333;
   padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.05);
-  border: 2px solid #555;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(255, 255, 255, 0.05);
   z-index: 10;
-  width: 180px;
+  width: 220px;
+  height: auto;
+  background-image: linear-gradient(to bottom, #444, #333);
 }
 
 .titulo-painel {
   margin: 0;
-  margin-bottom: 10px;
-  font-size: 1.1rem;
-  color: #fff;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  color: #f0f0f0;
   text-align: center;
-  border-bottom: 1px solid #888;
-  padding-bottom: 5px;
+  border-bottom: 2px solid #888;
+  padding-bottom: 10px;
+  font-weight: bold;
 }
 
 .painel-lateral button {
-  padding: 10px;
-  background-color: #0d6efd;
+  padding: 15px;
+  background-color: #555;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s;
+  font-size: 1.1rem;
+  transition: background-color 0.3s, box-shadow 0.2s;
+  position: relative;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2), inset 0 0 8px rgba(0, 0, 0, 0.4);
 }
 
 .painel-lateral button:hover {
-  background-color: #0a58ca;
+  background-color: #666;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0, 0, 0, 0.6);
 }
 
 .painel-lateral button.active {
   background-color: #28a745;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
 }
 
 .painel-lateral button.transitioning {
@@ -96,7 +102,7 @@ body {
   width: 50%;
   height: 100%;
   background-color: #444;
-  transition: transform 1s ease;
+  transition: transform 2s ease;
 }
 
 .door.left.open {
@@ -110,10 +116,14 @@ body {
 .conteudo-andar {
   z-index: 1;
   font-size: 2rem;
-  color: white;
   font-weight: bold;
   text-align: center;
   position: relative;
+  padding: 20px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  animation: fadeIn 1s ease-out;
 }
 
 .spotify-container {
@@ -131,4 +141,15 @@ body {
 
 .spotify-container iframe {
   box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

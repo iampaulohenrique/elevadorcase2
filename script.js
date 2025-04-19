@@ -17,13 +17,15 @@ const spotifyContainer = document.getElementById('spotify-container');
 const spotifyPlayer = document.getElementById('spotify-player');
 let spotifyIniciado = false;
 
-// Começa as portas abertas no térreo
+const dingSound = document.getElementById('ding-sound'); 
+
 doorLeft.classList.add('open');
 doorRight.classList.add('open');
 
 function abrirPortas() {
   doorLeft.classList.add('open');
   doorRight.classList.add('open');
+  mostrarConteudoDoAndar(currentFloor);
 }
 
 function fecharPortas() {
@@ -58,8 +60,6 @@ function chamarElevador(destino) {
     currentFloor = newFloor;
 
     painel.textContent = currentFloor === 0 ? 'T' : currentFloor;
-    label.textContent = nomeAndar[currentFloor];
-
     updateButtonColors();
 
     step++;
@@ -69,6 +69,7 @@ function chamarElevador(destino) {
       destinationButton.classList.remove('transitioning');
       destinationButton.classList.add('active');
       abrirPortas();
+      dingSound.play(); 
     }
   }, 1000);
 }
@@ -83,5 +84,29 @@ function updateButtonColors() {
       button.classList.remove('active');
       button.classList.remove('transitioning');
     }
+  }
+}
+
+function mostrarConteudoDoAndar(floor) {
+  const conteudo = document.getElementById('andar-label');
+  conteudo.classList.remove('fade');
+
+  switch (floor) {
+    case 0:
+      conteudo.textContent = 'Térreo - Bem-vindo!';
+      conteudo.style.backgroundImage = "url('imagens/hall.jpg')";
+      break;
+    case 1:
+      conteudo.textContent = '1º Andar - Escritório Administrativo';
+      conteudo.style.backgroundImage = "url('imagens/escritorio.jpg')";
+      break;
+    case 2:
+      conteudo.textContent = '2º Andar - Laboratório de Pesquisa';
+      conteudo.style.backgroundImage = "url('imagens/laboratorio.jpg')";
+      break;
+    case 3:
+      conteudo.textContent = '3º Andar - Café Lounge ☕';
+      conteudo.style.backgroundImage = "url('imagens/cafe.jpg')";
+      break;
   }
 }
