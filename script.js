@@ -44,34 +44,36 @@ function chamarElevador(destino) {
 
   fecharPortas();
 
-  if (!spotifyIniciado) {
-    spotifyPlayer.src = "https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator";
-    spotifyContainer.classList.remove('hidden');
-    spotifyIniciado = true;
-  }
-
-  let floorDifference = Math.abs(destino - currentFloor);
-  let step = 0;
-
-  const transitionInterval = setInterval(() => {
-    const newFloor = currentFloor + (destino > currentFloor ? 1 : -1);
-    elevator.classList.remove(`floor-${currentFloor}`);
-    elevator.classList.add(`floor-${newFloor}`);
-    currentFloor = newFloor;
-
-    painel.textContent = currentFloor === 0 ? 'T' : currentFloor;
-    updateButtonColors();
-
-    step++;
-    if (step >= floorDifference) {
-      clearInterval(transitionInterval);
-      currentButton.classList.remove('transitioning');
-      destinationButton.classList.remove('transitioning');
-      destinationButton.classList.add('active');
-      abrirPortas();
-      dingSound.play(); 
+  setTimeout(() => {  
+    if (!spotifyIniciado) {
+      spotifyPlayer.src = "https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator";
+      spotifyContainer.classList.remove('hidden');
+      spotifyIniciado = true;
     }
-  }, 1000);
+
+    let floorDifference = Math.abs(destino - currentFloor);
+    let step = 0;
+
+    const transitionInterval = setInterval(() => {
+      const newFloor = currentFloor + (destino > currentFloor ? 1 : -1);
+      elevator.classList.remove(`floor-${currentFloor}`);
+      elevator.classList.add(`floor-${newFloor}`);
+      currentFloor = newFloor;
+
+      painel.textContent = currentFloor === 0 ? 'T' : currentFloor;
+      updateButtonColors();
+
+      step++;
+      if (step >= floorDifference) {
+        clearInterval(transitionInterval);
+        currentButton.classList.remove('transitioning');
+        destinationButton.classList.remove('transitioning');
+        destinationButton.classList.add('active');
+        abrirPortas();
+        dingSound.play();
+      }
+    }, 1000);
+  }, 2000); // <-- TEMPO PARA FECHAR A PORTA (2 SEGUNDOS)
 }
 
 function updateButtonColors() {
@@ -89,24 +91,50 @@ function updateButtonColors() {
 
 function mostrarConteudoDoAndar(floor) {
   const conteudo = document.getElementById('andar-label');
-  conteudo.classList.remove('fade');
-
+  
   switch (floor) {
     case 0:
       conteudo.textContent = 'Térreo - Bem-vindo!';
-      conteudo.style.backgroundImage = "url('imagens/hall.jpg')";
       break;
     case 1:
       conteudo.textContent = '1º Andar - Escritório Administrativo';
-      conteudo.style.backgroundImage = "url('imagens/escritorio.jpg')";
       break;
     case 2:
       conteudo.textContent = '2º Andar - Laboratório de Pesquisa';
-      conteudo.style.backgroundImage = "url('imagens/laboratorio.jpg')";
       break;
     case 3:
       conteudo.textContent = '3º Andar - Café Lounge ☕';
-      conteudo.style.backgroundImage = "url('imagens/cafe.jpg')";
+      break;
+  }
+
+  atualizarImagemDoAndar(floor);
+}
+
+function atualizarImagemDoAndar(floor) {
+  let imagem = document.getElementById('andar-imagem');
+
+  if (!imagem) {
+    imagem = document.createElement('img');
+    imagem.id = 'andar-imagem';
+    document.getElementById('conteudo-andar')?.appendChild(imagem);
+  }
+
+  switch (floor) {
+    case 0:
+      imagem.src = 'img/hall.png';
+      imagem.alt = 'Térreo - Hall de Entrada';
+      break;
+    case 1:
+      imagem.src = 'img/1.png';
+      imagem.alt = '1º Andar - Escritório';
+      break;
+    case 2:
+      imagem.src = 'img/2.png';
+      imagem.alt = '2º Andar - Laboratório';
+      break;
+    case 3:
+      imagem.src = 'img/3.png';
+      imagem.alt = '3º Andar - Café Lounge';
       break;
   }
 }
