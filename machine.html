@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Máquina de Doces</title>
+  <link rel="stylesheet" href="style.css"> <!-- Certifique-se de que o CSS está correto -->
+</head>
+<body>
+  <div class="container">
+    <h1>Máquina de Doces</h1>
+
+    <p>Saldo: R$<span id="saldo-value">0.00</span></p>
+    <p id="mensagem"></p>
+
+    <div>
+        <button id="moeda-1" class="machine-button">R$1,00</button>
+        <button id="moeda-2" class="machine-button">R$2,00</button>
+        <button id="moeda-5" class="machine-button">R$5,00</button>
+      </div>
+      
+      <div>
+        <button id="doce-A" class="machine-button">Doce A (R$6,00)</button>
+        <button id="doce-B" class="machine-button">Doce B (R$7,00)</button>
+        <button id="doce-C" class="machine-button">Doce C (R$8,00)</button>
+      </div>
+      
+      <button id="finalizar-compra" class="machine-button">Finalizar Compra</button>
+
+    
+    <img src="img/maquinadoce1.png" alt="Máquina de Doces" class="machine-image" />
+
+    
+    <div class="coin"></div>
+    <div class="candy"></div>
+
+    
+    <div id="candy-machine-animation"></div>
+  </div>
+
+  <a href="index.html" class="back-button">Voltar</a>
+
+  <script src="machine.js"></script>
+</body>
+</html>

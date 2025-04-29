@@ -1,7 +1,64 @@
+
+body.homepage {
+  background-color: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  overflow: auto;
+}
+
+.container {
+  text-align: center;
+  color: white;
+}
+
+h1 {
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.card {
+  background-color: #222;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.5);
+  padding: 20px;
+  width: 220px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.card p {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+}
+
 body {
   margin: 0;
   padding: 0;
-  background: #111;
+  background-color: #111;
+  background-size: cover;
   color: white;
   font-family: sans-serif;
   height: 100vh;
@@ -90,7 +147,6 @@ body {
   transition: background-color 1s ease;
 }
 
-
 .doors {
   position: absolute;
   width: 100%;
@@ -104,19 +160,16 @@ body {
   height: 100%;
   background-color: #444;
   transition: transform 2s ease;
-  transform: translateX(0); 
+  transform: translateX(0);
 }
-
 
 .door.left.open {
   transform: translateX(-100%);
 }
 
-
 .door.right.open {
   transform: translateX(100%);
 }
-
 
 .conteudo-andar {
   position: absolute;
@@ -164,4 +217,188 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* === Estilos para a máquina de doces (machine.css) === */
+.machine-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  position: relative;
+}
+
+
+.machine {
+  background-image: url('../img/pexels-emily-ranquist-493228-1205648.jpg');
+  width: 100vw;  
+  height: 100vh; 
+  position: absolute; 
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-size: cover; 
+  background-repeat: no-repeat;
+  z-index: 0; 
+}
+
+
+.machine-image {
+  width: 300px; 
+  height: auto; /
+}
+
+.blurred {
+  filter: blur(5px);
+}
+
+.coin {
+  width: 30px;
+  height: 30px;
+  background: gold;
+  border-radius: 50%;
+  position: absolute;
+  left: 77%;
+  transform: translateX(-55%);
+  animation: dropCoin 1.5s forwards;
+}
+
+.candy {
+  width: 30px;
+  height: 30px;
+  background: #7FFF00;
+  border-radius: 50%;
+  border-width: 4px;
+  border-color: rgb(46, 46, 46);
+  border-style: solid;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: dropCandy 1s forwards;
+}
+
+@keyframes dropCoin {
+  0% { top: -30px; }
+  100% { top: 65px; }
+}
+
+@keyframes dropCandy {
+  0% { top: 170px; }
+  100% { top: 210px; }
+}
+
+.candy-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 3px solid #000000;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  z-index: 100;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  animation: popupAnimation 0.5s ease-out;
+}
+
+@keyframes popupAnimation {
+  0% { opacity: 0; transform: translate(-50%, -60%); }
+  100% { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+.candy-popup h2 {
+  font-size: 20px;
+  color: #fa72f3;
+}
+
+.candy-popup p {
+  font-size: 16px;
+}
+
+.hidden {
+  display: none;
+}
+
+.back-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000; /* BOTA ACIMA DOS ELEMENTOS, ASSIM FICA CLICAVEL */
+}
+
+.back-button:hover {
+  background-color: #555;
+}
+
+
+.machine-button {
+  background-color: #6600cc;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 0 10px rgba(102, 0, 204, 0.4);
+}
+
+.machine-button:hover {
+  background-color: #7f00ff;
+  transform: scale(1.05);
+}
+
+
+.machine-container.fade-in {
+  animation: fadeInMachine 1s ease-out;
+}
+
+@keyframes fadeInMachine {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+.candy.falling {
+  animation: fallAndBounce 1.2s ease-out forwards;
+}
+
+@keyframes fallAndBounce {
+  0% { top: 170px; }
+  80% { top: 210px; }
+  90% { top: 200px; }
+  100% { top: 210px; }
+}
+
+
+.machine-button.active::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 12px;
+  border: 2px solid #fff;
+  animation: glowPulse 1s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+  50% { box-shadow: 0 0 25px rgba(255, 255, 255, 0.7); }
+  100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
 }
